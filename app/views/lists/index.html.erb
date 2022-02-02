@@ -1,0 +1,22 @@
+<div id="lists">
+<table class="table table-bordered">
+  <% @lists.each do |list| %>
+    <% render list %>
+    <% if list.completed %>
+		<tr class="table-secondary">
+		<td class="striker">
+	<% else %>
+		<tr>
+		<td>
+	<% end %>
+	<%= link_to list.description, edit_list_path(list) %>
+	<td>
+	<center><%= button_to 'Delete', list, method: :delete, class: 'btn btn-secondary', data: { confirm:'Are you sure?' } %></center>
+	</td>
+		</td>
+		</tr>
+  <% end %>
+</table>
+
+<%= link_to 'Delete Completed Items', home_trash_em_path, data: { turbo_confirm: 'Are you sure?' } %>
+</div>
